@@ -1,0 +1,115 @@
+* {
+    /*Aids in managing the size of all HTML elements*/
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-bar{
+    width: 100%;
+    position: fixed;
+    top: 0;
+    background-color: whitesmoke;
+    transition: 0.5s;
+    z-index: 99;
+}
+
+.company-logo-default{
+    display: flex;
+    /*Align vertically and horizontally*/
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    text-align: center;
+    font-weight: 900;
+    line-height: 1.4;
+    padding: 0.5em 0.5em;
+    transition: 0.8s;
+    white-space: nowrap;
+}
+
+.company-logo-default i {
+    margin-right: 10px;
+}
+
+.company-logo-scroll {
+    /*Invisible by default, since the logo is only visible against the dark background of the fixed navigation
+    menu*/
+    display: none;
+    position: absolute;
+    top: .4em;
+    left: .4em;
+    font-size: 2em;
+    border: 3px solid whitesmoke;
+    padding: .2em;
+}
+
+/*Make the company logo visible when the fixed navigation menu is triggered by the user scrolling past a
+vertical scroll bar threshold*/
+.company-logo-scroll-active {
+    display: inline;
+    color: whitesmoke;
+}
+
+/* Remove defualt list style*/
+.nav-links ul {
+    display: flex;
+    width: 70%;
+    justify-content: space-between;
+    margin: auto;
+    padding: 0;
+    list-style-type: none;   
+}
+
+/* Remove underlines from text*/
+.nav-links li a{
+    display: block;
+    font-size: 1.2em;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 1rem;
+    position: relative;
+    margin: 0.3em;
+    color: black;
+    transition: 0.8s;
+}
+
+/* Create bar on top of links when hovered*/
+.nav-links a::after{
+    content: "";
+    position: absolute;
+    left: 10%;
+    bottom: 0;
+    width: 0;
+    height: 0.2em;
+    background: #ff6347;
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    /*Blue line that appears above navigation link is roughly the same width as the navigation link itself*/
+    width: 80%
+}
+
+/* Fixed Navigation Bar */
+.nav-bar.sticky {
+    padding: 0.5em 0.5em;
+    background-color: black;
+}
+
+.nav-bar.sticky .company-logo-default{
+    display: none;
+}
+
+.nav-bar.sticky a {
+    color: azure;
+}
+
+.main-content{
+    height: 1000px;
+}
+
+
+.scroll-up-button {
+    display: none;
+}
