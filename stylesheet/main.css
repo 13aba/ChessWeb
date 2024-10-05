@@ -1,11 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Kaushan+Script&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
 
 
+/*---------------------------------------------------------------*/
+/*Root variables and CSS styling that applies to all pages-------*/
+/*---------------------------------------------------------------*/
+
+
 :root {
     --background-light: #EAEFF3;
     --background-dark: #313135;
+    --beige: #F2D6A1;
+    --light-button: #BAB6B6;
+    --dark-button: #64656F;
 }
-
 
 
 * {
@@ -14,6 +21,71 @@
     margin: 0;
     padding: 0;
 }
+
+h2, h3 {
+    margin-bottom: 1em;
+}
+
+h5 {
+    margin-bottom: 0.5em;
+}
+
+.button {
+    display: inline-block; 
+    padding: 1em 1.5em; 
+    text-decoration: none; 
+    font-size: 16px; 
+    border-radius: 8px; 
+    transition: background-color 0.3s, color 0.3s;
+    margin-right: 1em;
+  }
+  
+.light-button {
+    background-color: var(--light-button);
+    color: black;
+}
+
+.light-button:hover {
+    background-color: var(--dark-button);
+    color: white;
+}
+
+.dark-button {
+    background-color: var(--dark-button);
+    color: white;
+}
+
+.dark-button:hover {
+    opacity: 0.8;
+}
+
+.box-shadow {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.article-container {
+    padding: 1em 1em;
+}
+
+.article-container p{
+    margin-bottom: 2em;
+}
+
+.image-container{
+    width: 100%;
+    overflow: hidden;
+    position: relative
+}
+
+.image-container img{
+    width: 100%;
+    height: auto;
+}
+
+/*-------------------------------------------*/
+/*Header CSS codes---------------------------*/
+/*-------------------------------------------*/
+
 
 .nav-bar{
     width: 100%;
@@ -115,11 +187,6 @@ vertical scroll bar threshold*/
     color: azure;
 }
 
-.main-content{
-    height: 1000px;
-}
-
-
 .scroll-up-button button {
     position: fixed;
     display: none;
@@ -135,8 +202,174 @@ vertical scroll bar threshold*/
 }
 
 
+/*-------------------------------------------*/
+/*Main Page CSS codes------------------------*/
+/*-------------------------------------------*/
+.main-content{
+    margin-top: 2em;
+    position: relative;
+    padding: 2em 5em;
+    background-color: var(--background-light);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
 
-/* Footer styling */
+}
+
+
+.featured-news {
+    grid-column: span 4;
+    display: grid;
+    height: 400px;
+    grid-template-columns: repeat(2, 1fr);
+    margin-bottom: 4em;
+}
+
+.featured-news-article {
+    min-width: 450px;
+    width: 100%;
+    height: 100%;
+    padding: 2em 2em;
+}
+
+.featured-buttons {
+    margin-top: 4em;
+}
+
+.main-image-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative
+}
+
+.main-image-container img {
+    width: 100%; 
+    object-fit: cover; 
+}
+
+.trending-news {
+    padding: 1em 1em;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1em;
+}
+
+.trending-news h2{
+    margin-left: 5em;
+}
+
+.trending-news .main-trending {
+    grid-column: span 2;
+}
+
+.recent-posts {
+    display: grid;
+    row-gap: 2em;
+}
+.recent-posts h2{
+    text-align: center;
+    margin-bottom: 3em;
+}
+
+
+
+
+/*-----------------------------------------------------------------------------------------------------------------*/
+/*Black text overlay on beige background that appears when the double left caret is hovered on specific images-----*/
+/*-----------------------------------------------------------------------------------------------------------------*/
+
+/*Give the text overlay header a decorative font
+The decorative font is not used for the paragraph since it may impair legibility*/
+.small-image-header h3 {
+    font-size: 1.7em !important;
+    font-weight: 600;
+    margin-bottom: .4em;
+}
+
+/*Distinguish the text from the header by reducing its size and giving it a readable font*/
+.small-text-overlay p {
+    line-height: 1.8;
+    font-size: 0.81em;
+    font-weight: 400 !important;
+    text-align: center;
+}
+
+/*Ensure that the text is not visible before the double left caret is hovered by the user*/
+.small-text-overlay {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    background: var(--beige);
+    color: black;
+    left: 0;
+    /*Align the beige background with the dimensions of the image container it is overlapping*/
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    /*This ensures that the text does not overflow and become visible before the overlay is toggled.
+    % is used instead of ems to accommodate large screens which may result in overflow otherwise*/
+    padding: 15%;
+    transition: ease-in-out 420ms;
+    /*Position overlay to be occupy a portion of the right side of the image before being hovered over by the user*/
+    transform: translateX(87%);
+}
+
+/*Vertically center the header and text within the image height*/
+.small-text-overlay>* {
+    transform: translateY(-5px);
+}
+
+/*Position opaque background to cover the original background image*/
+.small-text-overlay:hover {
+    transform: translateY(0);
+}
+
+/*The two left-pointing carets that prompt the user to see more*/
+.double-left-caret {
+    position: absolute;
+    left: 4%;
+    top: 48%;
+    font-size: 1.5em;
+    color: var(--dark-grey);
+}
+
+/*The two left-pointing carets grow and shrink continually in order to indicate an interactive element
+This is the only continuous animation on the web page, emphasizing its importance.*/
+.double-left-caret i {
+    animation: growAndShrink 1.6s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+/*Interactivity of the left-pointing carets is emphasized by an animation that changes in size and opacity*/
+@keyframes growAndShrink {
+
+    /*Shrink the left-pointing carets*/
+    0% {
+        transform: scale(0.97);
+        opacity: 0.6;
+    }
+
+    /*Grow the left-pointing carets*/
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+
+    /*Restore the left-pointing carets to the original, smaller state*/
+    100% {
+        transform: scale(0.97);
+        opacity: 0.6;
+    }
+}
+
+
+/*-------------------------------------------*/
+/*Footer CSS codes---------------------------*/
+/*-------------------------------------------*/
+
 .footer {
     width: 100%;
     height: 300px;
